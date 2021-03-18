@@ -16,9 +16,9 @@ func Attrs(attrs ...html.Attribute) []html.Attribute {
 	return attrs
 }
 
-func Attr(k, v string) html.Attribute {
+func Attr(k atom.Atom, v string) html.Attribute {
 	return html.Attribute{
-		Key: k,
+		Key: k.String(),
 		Val: v,
 	}
 }
@@ -37,4 +37,8 @@ func New(dataAtom atom.Atom, attrs []html.Attribute, children ...*html.Node) *ht
 		}
 	}
 	return n
+}
+
+func NewNoAttr(dataAtom atom.Atom, children ...*html.Node) *html.Node {
+	return New(dataAtom, nil, children...)
 }

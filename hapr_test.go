@@ -9,20 +9,21 @@ import (
 	"github.com/davecgh/go-spew/spew"
 
 	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
+	a "golang.org/x/net/html/atom"
 )
 
 func TestX(t *testing.T) {
 
 	w := bufio.NewWriter(os.Stdout)
 
-	hh := New(atom.Div, nil,
-		New(atom.P, nil, Text("hi")),
-		New(atom.P, nil, Text("bye")),
-		New(atom.Img,
+	hh := New(a.Div, nil,
+		New(a.P, nil, Text("hi")),
+		New(a.P, nil, Text("bye")),
+		New(a.Img,
 			Attrs(
-				Attr("height", "100px"),
-				Attr("width", "100px"),
+				Attr(a.Height, "100px"),
+				Attr(a.Width, "100px"),
+				Attr(a.Style, "border-radius:10px;color:red"),
 			),
 		),
 	)
@@ -34,5 +35,7 @@ func TestX(t *testing.T) {
 	html.Render(w, hh)
 
 	w.Flush()
+
+	fmt.Println("\nLookUP", a.Lookup([]byte("style")))
 
 }
