@@ -32,6 +32,10 @@ func main() {
 		fmt.Fprintf(&buf, "func %s(attrs []html.Attribute, children ...*html.Node) *html.Node {\n", iden)
 		fmt.Fprintf(&buf, "\treturn New(atom.%s,attrs, children...)\n", iden)
 		fmt.Fprint(&buf, "}\n\n")
+
+		fmt.Fprintf(&buf, "func %s_(children ...*html.Node) *html.Node {\n", iden)
+		fmt.Fprintf(&buf, "\treturn New(atom.%s,nil, children...)\n", iden)
+		fmt.Fprint(&buf, "}\n\n")
 	}
 
 	genFile("base.go", &buf)
