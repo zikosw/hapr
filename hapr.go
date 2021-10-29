@@ -5,7 +5,7 @@ import (
 	"reflect"
 
 	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
+	a "golang.org/x/net/html/atom"
 )
 
 func Text(t string) *html.Node {
@@ -19,14 +19,14 @@ func Attrs(attrs ...html.Attribute) []html.Attribute {
 	return attrs
 }
 
-func Attr(k atom.Atom, v string) html.Attribute {
+func Attr(k a.Atom, v string) html.Attribute {
 	return html.Attribute{
 		Key: k.String(),
 		Val: v,
 	}
 }
 
-func New(dataAtom atom.Atom, attrs []html.Attribute, children ...*html.Node) *html.Node {
+func New(dataAtom a.Atom, attrs []html.Attribute, children ...*html.Node) *html.Node {
 	n := &html.Node{
 		Type:     html.ElementNode,
 		DataAtom: dataAtom,
@@ -42,18 +42,18 @@ func New(dataAtom atom.Atom, attrs []html.Attribute, children ...*html.Node) *ht
 	return n
 }
 
-func NewNA(dataAtom atom.Atom, children ...*html.Node) *html.Node {
+func NewNA(dataAtom a.Atom, children ...*html.Node) *html.Node {
 	return New(dataAtom, nil, children...)
 }
 
 var ErrItemsNotSlice = fmt.Errorf("item must be slice")
-var ErrRendererNotFunc = fmt.Errorf("renderer must be function")
-var ErrRendererArgsNotMatch = fmt.Errorf("renderer args not match")
-var ErrRendererReturnNotMatch = fmt.Errorf("renderer return not match")
+var ErrRenderNotFunc = fmt.Errorf("render must be function")
+var ErrRenderArgsNotMatch = fmt.Errorf("render args not match")
+var ErrRenderReturnNotMatch = fmt.Errorf("render return not match")
 
 var _renderReturn *html.Node
 
-func ForEach(items interface{}, renderer interface{}) ([]*html.Node, error) {
+func ForEach(items interface{}, render interface{}) ([]*html.Node, error) {
 	if items == nil {
 		return nil, nil
 	}
@@ -65,21 +65,21 @@ func ForEach(items interface{}, renderer interface{}) ([]*html.Node, error) {
 		return nil, ErrItemsNotSlice
 	}
 
-	if renderer == nil {
-		return nil, ErrRendererNotFunc
+	if render == nil {
+		return nil, ErrRenderNotFunc
 	}
-	valOfRenderer := reflect.ValueOf(renderer)
-	typeOfRenderer := reflect.TypeOf(renderer)
+	valOfRenderer := reflect.ValueOf(render)
+	typeOfRenderer := reflect.TypeOf(render)
 
 	// fmt.Printf("val render:%+v\n", valOfRenderer)
 	// fmt.Printf("type render:%+v\n", typeOfRenderer)
 	if valOfRenderer.IsNil() {
-		return nil, ErrRendererNotFunc
+		return nil, ErrRenderNotFunc
 	}
 
 	// fmt.Println("num in", typeOfRenderer.NumIn())
 	if typeOfRenderer.NumIn() != 1 {
-		return nil, ErrRendererArgsNotMatch
+		return nil, ErrRenderArgsNotMatch
 	}
 
 	typeOfArg := typeOfRenderer.In(0)
@@ -90,12 +90,12 @@ func ForEach(items interface{}, renderer interface{}) ([]*html.Node, error) {
 	// fmt.Println("-item elem type", typeOfItemsElem.String())
 	// fmt.Println("-renderer arg type", typeOfArg.String())
 	if typeOfArg.String() != typeOfItemsElem.String() {
-		return nil, ErrRendererArgsNotMatch
+		return nil, ErrRenderArgsNotMatch
 	}
 
 	// typeOfRenderOut
 	if typeOfRenderer.NumOut() != 1 {
-		return nil, ErrRendererReturnNotMatch
+		return nil, ErrRenderReturnNotMatch
 	}
 
 	typeOfRet := typeOfRenderer.Out(0)
@@ -104,7 +104,7 @@ func ForEach(items interface{}, renderer interface{}) ([]*html.Node, error) {
 	// fmt.Println("ret2", typeOfrenret.String())
 	// fmt.Println("ret3", typeOfrenret.Name())
 	if typeOfRet.String() != reflect.TypeOf(_renderReturn).String() {
-		return nil, ErrRendererReturnNotMatch
+		return nil, ErrRenderReturnNotMatch
 	}
 
 	valOfItems := reflect.ValueOf(items)
@@ -134,4 +134,8 @@ func ForEach(items interface{}, renderer interface{}) ([]*html.Node, error) {
 	}
 
 	return results, nil
+}
+
+func AttrClass(class string) []html.Attribute {
+	return Attrs(Attr(a.Class, class))
 }

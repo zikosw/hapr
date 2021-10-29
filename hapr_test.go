@@ -72,7 +72,7 @@ func TestForEach(t *testing.T) {
 			args: args{
 				items: []int{},
 			},
-			wantErr: ErrRendererNotFunc,
+			wantErr: ErrRenderNotFunc,
 		},
 		{
 			name: "renderer no arg",
@@ -80,7 +80,7 @@ func TestForEach(t *testing.T) {
 				items:    []int{},
 				renderer: func() {},
 			},
-			wantErr: ErrRendererArgsNotMatch,
+			wantErr: ErrRenderArgsNotMatch,
 		},
 		{
 			name: "renderer args number not match",
@@ -88,7 +88,7 @@ func TestForEach(t *testing.T) {
 				items:    []int{},
 				renderer: func(int, int) {},
 			},
-			wantErr: ErrRendererArgsNotMatch,
+			wantErr: ErrRenderArgsNotMatch,
 		},
 		{
 			name: "items's type and renderer's param type not match",
@@ -96,7 +96,7 @@ func TestForEach(t *testing.T) {
 				items:    []int{},
 				renderer: func(string) {},
 			},
-			wantErr: ErrRendererArgsNotMatch,
+			wantErr: ErrRenderArgsNotMatch,
 		},
 		{
 			name: "renderer return not match",
@@ -104,7 +104,7 @@ func TestForEach(t *testing.T) {
 				items:    []int{},
 				renderer: func(int) int { return 0 },
 			},
-			wantErr: ErrRendererReturnNotMatch,
+			wantErr: ErrRenderReturnNotMatch,
 		},
 		{
 			name: "items's type and renderer's param type match, empty items got nil",
