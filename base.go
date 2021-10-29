@@ -31,12 +31,8 @@ func Address_(children ...*html.Node) *html.Node {
 	return New(atom.Address, nil, children...)
 }
 
-func Area(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Area, attrs, children...)
-}
-
-func Area_(children ...*html.Node) *html.Node {
-	return New(atom.Area, nil, children...)
+func Area(attrs []html.Attribute) *html.Node {
+	return New(atom.Area, attrs)
 }
 
 func Article(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -71,12 +67,8 @@ func B_(children ...*html.Node) *html.Node {
 	return New(atom.B, nil, children...)
 }
 
-func Base(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Base, attrs, children...)
-}
-
-func Base_(children ...*html.Node) *html.Node {
-	return New(atom.Base, nil, children...)
+func Base(attrs []html.Attribute) *html.Node {
+	return New(atom.Base, attrs)
 }
 
 func Bdi(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -111,12 +103,8 @@ func Body_(children ...*html.Node) *html.Node {
 	return New(atom.Body, nil, children...)
 }
 
-func Br(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Br, attrs, children...)
-}
-
-func Br_(children ...*html.Node) *html.Node {
-	return New(atom.Br, nil, children...)
+func Br(attrs []html.Attribute) *html.Node {
+	return New(atom.Br, attrs)
 }
 
 func Button(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -159,12 +147,8 @@ func Code_(children ...*html.Node) *html.Node {
 	return New(atom.Code, nil, children...)
 }
 
-func Col(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Col, attrs, children...)
-}
-
-func Col_(children ...*html.Node) *html.Node {
-	return New(atom.Col, nil, children...)
+func Col(attrs []html.Attribute) *html.Node {
+	return New(atom.Col, attrs)
 }
 
 func Colgroup(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -175,12 +159,8 @@ func Colgroup_(children ...*html.Node) *html.Node {
 	return New(atom.Colgroup, nil, children...)
 }
 
-func Command(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Command, attrs, children...)
-}
-
-func Command_(children ...*html.Node) *html.Node {
-	return New(atom.Command, nil, children...)
+func Command(attrs []html.Attribute) *html.Node {
+	return New(atom.Command, attrs)
 }
 
 func Data(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -271,12 +251,8 @@ func Em_(children ...*html.Node) *html.Node {
 	return New(atom.Em, nil, children...)
 }
 
-func Embed(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Embed, attrs, children...)
-}
-
-func Embed_(children ...*html.Node) *html.Node {
-	return New(atom.Embed, nil, children...)
+func Embed(attrs []html.Attribute) *html.Node {
+	return New(atom.Embed, attrs)
 }
 
 func Fieldset(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -391,12 +367,8 @@ func Hgroup_(children ...*html.Node) *html.Node {
 	return New(atom.Hgroup, nil, children...)
 }
 
-func Hr(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Hr, attrs, children...)
-}
-
-func Hr_(children ...*html.Node) *html.Node {
-	return New(atom.Hr, nil, children...)
+func Hr(attrs []html.Attribute) *html.Node {
+	return New(atom.Hr, attrs)
 }
 
 func Html(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -423,20 +395,12 @@ func Iframe_(children ...*html.Node) *html.Node {
 	return New(atom.Iframe, nil, children...)
 }
 
-func Img(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Img, attrs, children...)
+func Img(attrs []html.Attribute) *html.Node {
+	return New(atom.Img, attrs)
 }
 
-func Img_(children ...*html.Node) *html.Node {
-	return New(atom.Img, nil, children...)
-}
-
-func Input(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Input, attrs, children...)
-}
-
-func Input_(children ...*html.Node) *html.Node {
-	return New(atom.Input, nil, children...)
+func Input(attrs []html.Attribute) *html.Node {
+	return New(atom.Input, attrs)
 }
 
 func Ins(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -455,12 +419,8 @@ func Kbd_(children ...*html.Node) *html.Node {
 	return New(atom.Kbd, nil, children...)
 }
 
-func Keygen(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Keygen, attrs, children...)
-}
-
-func Keygen_(children ...*html.Node) *html.Node {
-	return New(atom.Keygen, nil, children...)
+func Keygen(attrs []html.Attribute) *html.Node {
+	return New(atom.Keygen, attrs)
 }
 
 func Label(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -487,12 +447,8 @@ func Li_(children ...*html.Node) *html.Node {
 	return New(atom.Li, nil, children...)
 }
 
-func Link(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Link, attrs, children...)
-}
-
-func Link_(children ...*html.Node) *html.Node {
-	return New(atom.Link, nil, children...)
+func Link(attrs []html.Attribute) *html.Node {
+	return New(atom.Link, attrs)
 }
 
 func Main(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -535,12 +491,8 @@ func Menuitem_(children ...*html.Node) *html.Node {
 	return New(atom.Menuitem, nil, children...)
 }
 
-func Meta(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Meta, attrs, children...)
-}
-
-func Meta_(children ...*html.Node) *html.Node {
-	return New(atom.Meta, nil, children...)
+func Meta(attrs []html.Attribute) *html.Node {
+	return New(atom.Meta, attrs)
 }
 
 func Meter(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -615,12 +567,8 @@ func P_(children ...*html.Node) *html.Node {
 	return New(atom.P, nil, children...)
 }
 
-func Param(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Param, attrs, children...)
-}
-
-func Param_(children ...*html.Node) *html.Node {
-	return New(atom.Param, nil, children...)
+func Param(attrs []html.Attribute) *html.Node {
+	return New(atom.Param, attrs)
 }
 
 func Picture(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -735,12 +683,8 @@ func Small_(children ...*html.Node) *html.Node {
 	return New(atom.Small, nil, children...)
 }
 
-func Source(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Source, attrs, children...)
-}
-
-func Source_(children ...*html.Node) *html.Node {
-	return New(atom.Source, nil, children...)
+func Source(attrs []html.Attribute) *html.Node {
+	return New(atom.Source, attrs)
 }
 
 func Span(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -879,12 +823,8 @@ func Tr_(children ...*html.Node) *html.Node {
 	return New(atom.Tr, nil, children...)
 }
 
-func Track(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Track, attrs, children...)
-}
-
-func Track_(children ...*html.Node) *html.Node {
-	return New(atom.Track, nil, children...)
+func Track(attrs []html.Attribute) *html.Node {
+	return New(atom.Track, attrs)
 }
 
 func U(attrs []html.Attribute, children ...*html.Node) *html.Node {
@@ -919,10 +859,6 @@ func Video_(children ...*html.Node) *html.Node {
 	return New(atom.Video, nil, children...)
 }
 
-func Wbr(attrs []html.Attribute, children ...*html.Node) *html.Node {
-	return New(atom.Wbr, attrs, children...)
-}
-
-func Wbr_(children ...*html.Node) *html.Node {
-	return New(atom.Wbr, nil, children...)
+func Wbr(attrs []html.Attribute) *html.Node {
+	return New(atom.Wbr, attrs)
 }

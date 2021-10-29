@@ -29,13 +29,20 @@ func main() {
 
 	for _, el := range elements {
 		iden := identifier(el)
-		fmt.Fprintf(&buf, "func %s(attrs []html.Attribute, children ...*html.Node) *html.Node {\n", iden)
-		fmt.Fprintf(&buf, "\treturn New(atom.%s,attrs, children...)\n", iden)
-		fmt.Fprint(&buf, "}\n\n")
+		_, isVoidElement := voidElements[el]
+		if isVoidElement {
+			fmt.Fprintf(&buf, "func %s(attrs []html.Attribute) *html.Node {\n", iden)
+			fmt.Fprintf(&buf, "\treturn New(atom.%s,attrs)\n", iden)
+			fmt.Fprint(&buf, "}\n\n")
+		} else {
+			fmt.Fprintf(&buf, "func %s(attrs []html.Attribute, children ...*html.Node) *html.Node {\n", iden)
+			fmt.Fprintf(&buf, "\treturn New(atom.%s,attrs, children...)\n", iden)
+			fmt.Fprint(&buf, "}\n\n")
 
-		fmt.Fprintf(&buf, "func %s_(children ...*html.Node) *html.Node {\n", iden)
-		fmt.Fprintf(&buf, "\treturn New(atom.%s,nil, children...)\n", iden)
-		fmt.Fprint(&buf, "}\n\n")
+			fmt.Fprintf(&buf, "func %s_(children ...*html.Node) *html.Node {\n", iden)
+			fmt.Fprintf(&buf, "\treturn New(atom.%s,nil, children...)\n", iden)
+			fmt.Fprint(&buf, "}\n\n")
+		}
 	}
 
 	genFile("base.go", &buf)
@@ -194,4 +201,25 @@ var elements = []string{
 	"var",
 	"video",
 	"wbr",
+}
+
+// Section 12.1.2, "Elements", gives this list of void elements. Void elements
+// are those that can't have any contents.
+var voidElements = map[string]bool{
+	"area":    true,
+	"base":    true,
+	"br":      true,
+	"col":     true,
+	"command": true,
+	"embed":   true,
+	"hr":      true,
+	"img":     true,
+	"input":   true,
+	"keygen":  true,
+	"link":    true,
+	"meta":    true,
+	"param":   true,
+	"source":  true,
+	"track":   true,
+	"wbr":     true,
 }
